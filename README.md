@@ -110,3 +110,19 @@ $ curl -X POST \
 
 $ curl -G 'https://rahneptune20201211102942965200000006.cluster-ce6eqomcqsmi.eu-west-2.neptune.amazonaws.com:8182/loader'
 ```
+
+
+## License
+Copyright 2020 Leap Beyond Emerging Technologies B.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+yum upgrade -y -q
+yum update -y -q
+yum install java-1.8.0-devel -y -q
+
+cd ~ec2-user
+wget https://archive.apache.org/dist/tinkerpop/3.4.8/apache-tinkerpop-gremlin-console-3.4.8-bin.zip
+unzip apache-tinkerpop-gremlin-console-3.4.8-bin.zip
+rm apache-tinkerpop-gremlin-console-3.4.8-bin.zip
+
+cat <<EOF >apache-tinkerpop-gremlin-console-3.4.8/conf/neptune-remote.yaml
+hosts: [${neptune_url}]
+port: ${neptune_port}
+connectionPool: { enableSsl: true,  trustStore: /home/ec2-user/certs/cacerts }
+serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GryoMessageSerializerV3d0, config: { serializeResultToString: true }}
+EOF
+
+wget https://www.amazontrust.com/repository/SFSRootCAG2.cer
+mkdir certs
+cp /usr/lib/jvm/java/jre/lib/security/cacerts certs/cacerts
+keytool -import -alias neptune-tests-ca -keystore certs/cacerts -file SFSRootCAG2.cer -noprompt -storepass changeit
+
+chown -R ec2-user:ec2-user *

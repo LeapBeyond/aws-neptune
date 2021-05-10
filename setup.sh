@@ -66,7 +66,7 @@ cd ..
 
 banner "Executing terraform"
 
-cat <<EOF |tee terraform/terraform.tfvars
+cat <<EOF |tee terraform.tfvars
 aws_region     = "${REGION:=eu-west-2}"
 aws_profile    = "${ROLE}"
 aws_account_id = "${ACCOUNT}"
